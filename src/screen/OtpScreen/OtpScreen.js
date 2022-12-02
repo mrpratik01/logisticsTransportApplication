@@ -7,7 +7,7 @@ import Buttons from '../../components/Buttons/Buttons';
 const OtpScreen = () => {
 
     const onEnterPressed = () => {
-        console.warn("Skip")
+        console.warn("skip")
     }
     
   const tailwind = useTailwind();
