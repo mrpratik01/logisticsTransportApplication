@@ -17,7 +17,7 @@ const WelcomeScreen = () => {
   return (
     <View style = {styles.root}>
       <Image source={Logo} style={tailwind('')} resizeMode="contain" ></Image>
-      <Text style={tailwind('font-bold text-center text-xl mx-4 ')} >Best Logistics and Transportation service available for Nepal 🇳🇵</Text>
+      <Text style={tailwind('font-bold text-center text-xl mx-4 ')} >Best Logistics service available for Nepal 🇳🇵</Text>
       <Buttons style={tailwind('')} onPress={onSkipPress} text="Skip"></Buttons>
 
     </View>

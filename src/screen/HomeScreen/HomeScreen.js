@@ -1,31 +1,32 @@
-import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native'
+import { View, Text, StyleSheet, Image, useWindowDimensions, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
 import {useTailwind} from 'tailwind-rn';
 import logo from '../../../assets/images/logo.png'
 
 const HomeScreen = () => {
+
+
     const tailwind = useTailwind();
     const {height} = useWindowDimensions()
   return (
-    <View>
-      <Text style={styles.root}> 
-      <Image source={logo} style={[styles.logo, {height: height * 0.4}] } resizeMode="contain" ></Image>
+    <View styles={styles.root}>
+
+      <Text>Hello</Text>
+
+
+
       
-      </Text>
-    </View>
+      </View>
   )
 }
 
 
 const styles = StyleSheet.create({
     root: {
-       
+      alignItems: 'center',
+      padding: 20,
     },
-    logo: {
-      width: '100%',
-      maxWidth: 800,
-      maxHeight: 500,
-    },
+    
   
     
   
