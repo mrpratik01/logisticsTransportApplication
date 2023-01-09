@@ -6,13 +6,14 @@ import utilities from './tailwind.json';
 import WelcomeScreen from './src/screen/WelcomeScreen'
 import OtpScreen from './src/screen/OtpScreen/OtpScreen';
 import HomeScreen from './src/screen/HomeScreen';
+import ChangePassword from './src/screen/changePassword/ChangePassword';
 
 export default function App() {
   return (
 
     <TailwindProvider utilities={utilities}>
 
-<SignInScreen></SignInScreen>
+<ChangePassword></ChangePassword>
 
 
 
