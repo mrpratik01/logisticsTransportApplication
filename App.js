@@ -7,14 +7,14 @@ import WelcomeScreen from './src/screen/WelcomeScreen'
 import OtpScreen from './src/screen/OtpScreen/OtpScreen';
 import HomeScreen from './src/screen/HomeScreen';
 import ChangePassword from './src/screen/changePassword/ChangePassword';
+import RegisterScreen from './src/screen/RegisterScreen';
 
 export default function App() {
   return (
 
     <TailwindProvider utilities={utilities}>
 
-<ChangePassword></ChangePassword>
-
+<HomeScreen></HomeScreen>
 
 
    </TailwindProvider>
