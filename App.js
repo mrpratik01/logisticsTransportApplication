@@ -8,6 +8,7 @@ import OtpScreen from './src/screen/OtpScreen/OtpScreen';
 import HomeScreen from './src/screen/HomeScreen';
 import ChangePassword from './src/screen/changePassword/ChangePassword';
 import RegisterScreen from './src/screen/RegisterScreen';
+import ShipPackages from './src/screen/ShipPackages';
 
 export default function App() {
   return (
