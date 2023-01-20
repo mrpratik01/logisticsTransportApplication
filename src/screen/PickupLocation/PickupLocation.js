@@ -10,7 +10,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
 
-const ShipPackages = () => {
+const PickupLocation = () => {
   const backPressed = () => {
     alert("Okay");
   };
@@ -175,4 +175,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShipPackages;
+export default PickupLocation;

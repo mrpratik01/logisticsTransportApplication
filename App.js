@@ -8,15 +8,15 @@ import OtpScreen from './src/screen/OtpScreen/OtpScreen';
 import HomeScreen from './src/screen/HomeScreen';
 import ChangePassword from './src/screen/changePassword/ChangePassword';
 import RegisterScreen from './src/screen/RegisterScreen';
-import ShipPackages from './src/screen/ShipPackages';
-
+import PickupLocation from './src/screen/PickupLocation';
+import AddNewLocationScreen from './src/screen/AddNewLocationScreen';
+import DropOffLocation from './src/screen/dropOffLocation/dropOffLocation';
 export default function App() {
   return (
 
     <TailwindProvider utilities={utilities}>
 
-<HomeScreen></HomeScreen>
-
+<DropOffLocation></DropOffLocation>
 
    </TailwindProvider>
   
