@@ -10,14 +10,14 @@ import ChangePassword from './src/screen/changePassword/ChangePassword';
 import RegisterScreen from './src/screen/RegisterScreen';
 import PickupLocation from './src/screen/PickupLocation';
 import AddNewLocationScreen from './src/screen/AddNewLocationScreen';
-import DropOffLocation from './src/screen/dropOffLocation/dropOffLocation';
+import DropOffLocation from './src/screen/DropOffLocation/DropOffLocation';
+import DeliveryItemsDetails from './src/screen/DeliveryItemsDetails';
 export default function App() {
   return (
 
     <TailwindProvider utilities={utilities}>
 
-<DropOffLocation></DropOffLocation>
-
+<DeliveryItemsDetails></DeliveryItemsDetails>
    </TailwindProvider>
   
 
