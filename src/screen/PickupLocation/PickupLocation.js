@@ -64,7 +64,7 @@ const PickupLocation = () => {
       </TouchableOpacity>
       <Text style={styles.title2}>Select from saved location</Text>
 
-      <View style= {styles.radioButton}>
+      <View style={styles.radioButton}>
         <CheckBox
           title="Damak 1, Jhapa"
           center
@@ -91,13 +91,18 @@ const PickupLocation = () => {
         />
       </View>
 
-      <Text style={styles.title3}>By completing this Task, you accept terms of service and privacy policy of 365 Logistics </Text>
+      <Text style={styles.title3}>
+        By completing this Task, you accept terms of service and privacy policy
+        of 365 Logistics{" "}
+      </Text>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.continueButton} onPress={continueButton}>
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.continueButton}
+          onPress={continueButton}
+        >
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
       </View>
-      
     </View>
   );
 };
@@ -148,7 +153,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: "40%",
     height: 40,
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
     marginVertical: 10,
   },
@@ -161,7 +166,7 @@ const styles = StyleSheet.create({
   title2: {
     marginLeft: 30,
     marginTop: 50,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
     alignItems: "flex-start",
     fontWeight: "bold",
     fontSize: 18,
@@ -170,8 +175,8 @@ const styles = StyleSheet.create({
   radioButton: {
     marginTop: 30,
     marginLeft: 10,
-    justifyContent: 'flex-start',
-    alignItems: "flex-start"
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
   },
 });
 

@@ -1,4 +1,4 @@
-import { SafeAreaView,View, StyleSheet, Image, Text, useWindowDimensions, TextInput, TouchableOpacity, } from 'react-native'
+import { SafeAreaView,View, StyleSheet, Image, Text, useWindowDimensions, TextInput, TouchableOpacity, Alert, } from 'react-native'
 import React , { useState } from 'react'
 import logo from '../../../assets/images/logo.png'
 import {useTailwind} from 'tailwind-rn';
@@ -7,10 +7,20 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 
 
 const SignInScreen = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(' ');
   const [password, setPassword] = useState('');
   const tailwind = useTailwind();
   const {height} = useWindowDimensions()
+
+  const login = () => {
+    if (email == "Pratik" && password == "Bhattarai"){
+      Alert.alert(`Thanks ${email}`)
+    }else {
+      Alert.alert("the username or password is not correct ")
+    }
+  };
+
+
   return (
 
     // <View style={styles.root}>
@@ -34,7 +44,7 @@ const SignInScreen = () => {
         onChangeText={setPassword}
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={() => console.log('Sign in clicked')}>
+      <TouchableOpacity style={styles.button} onPress={login}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('Sign in clicked')}>

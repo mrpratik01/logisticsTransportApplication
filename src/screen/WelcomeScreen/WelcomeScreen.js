@@ -4,12 +4,12 @@ import Logo from '../../../assets/images/logo.png'
 import {useTailwind} from 'tailwind-rn';
 import { Buttons } from '../../components/Buttons'
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
 
     const tailwind = useTailwind();
 
     const onSkipPress = () => {
-        console.warn("Skip")
+        navigation.navigate("SignInScreen")
     }
 
 
