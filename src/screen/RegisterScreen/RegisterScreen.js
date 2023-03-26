@@ -3,17 +3,40 @@ import { View, TextInput, TouchableOpacity, useWindowDimensions, Text, StyleShee
 import axios from 'axios';
 import {useTailwind} from 'tailwind-rn';
 import logo from '../../../assets/images/logo.png'
+const RegisterScreen = ({navigation}) => {
 
-const RegisterScreen = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [registerData , setRegisterData] = useState({name:'', email:'', number: '', password: ''})
+  // const [registerData, setRegisterData] = useState()
   const tailwind = useTailwind();
   const {height} = useWindowDimensions()
 
-  const handleRegister = () => {
-    alert("Okay")
-  };
+
+  const handleRegister = async () => {
+    try{
+     const res = await axios.post("http://localhost:3001/api/signup", registerData)
+
+     console.log(res.data)
+
+     navigation.navigate("HomeScreen")
+
+
+    }
+    catch (err) {
+      console.log(err)
+
+    }
+
+
+  }
+
+  const handleChange = (e) => {
+    setRegisterData((pre) => ({
+      ...pre,[e.target.name] : e.target.value
+    }
+    ))
+
+  }
+
 
   return (
     <View style={styles.container}>
@@ -21,22 +44,31 @@ const RegisterScreen = () => {
         <Text style={[tailwind('font-bold text-xl'), styles.title]}>Create Account</Text>
       <TextInput
         style={styles.inputField}
+        type={"text"}
         placeholder="Name"
-        value={name}
-        onChangeText={setName}
+        value={registerData.name}
+        onChangeText={text => setRegisterData({...registerData,name:text})}
       />
       <TextInput
         style={styles.inputField}
+        type={"email"}
         placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
+        value={registerData.email}
+        onChangeText={text => setRegisterData({...registerData,email:text})}
       />
       <TextInput
         style={styles.inputField}
+        type={"number"}
+        placeholder="Phone Number"
+        value={registerData.number}
+        onChangeText={text => setRegisterData({...registerData,number:text})}
+      />
+      <TextInput
+        style={styles.inputField}
+        type={"password"}
         placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
+        value={registerData.password}
+        onChangeText={text => setRegisterData({...registerData,password:text})}
       />
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Register</Text>

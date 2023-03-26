@@ -18,12 +18,13 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const fundWallet = () => {
     alert("Okay");
   };
   const shipPackage = () => {
-    alert("Okay");
+
+    navigation.navigate("PickupLocation")
   };
 
   const tailwind = useTailwind();

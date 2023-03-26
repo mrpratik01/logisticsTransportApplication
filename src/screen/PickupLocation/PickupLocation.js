@@ -10,14 +10,20 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
 
-const PickupLocation = () => {
+const PickupLocation = ({navigation}) => {
   const backPressed = () => {
     alert("Okay");
   };
   const Edit = () => {
-    alert("Okay");
+
+    navigation.navigate("AddNewLocationScreen")
+
+
   };
   const continueButton = () => {
+    navigation.navigate("",{
+      
+    })
     alert("Okay");
   };
 

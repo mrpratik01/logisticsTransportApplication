@@ -10,16 +10,17 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
 
-const DropOffLocation = () => {
+const DropOffLocation = ({navigation}) => {
   const backPressed = () => {
     alert("Okay");
   };
 
+
   const Edit = () => {
-    alert("Okay");
+    navigation.navigate("AddNewLocation")
   };
   const continueButton = () => {
-    alert("Okay");
+    navigation.navigate("DeliveryItemsDetails")
   };
 
   const [location, onChangeLocation] = React.useState("");

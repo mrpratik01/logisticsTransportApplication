@@ -4,27 +4,43 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  useState,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
+import axios from 'axios';
 
-const AddNewLocationScreen = () => {
+
+const AddNewLocationScreen = ({navigation}) => {
+
+  const [credential , setCredential] = useState({name:'', address:'', number: ''})
+
   const backPressed = () => {
     alert("Okay");
   };
-  const continueButton = () => {
-    alert("Okay");
-  };
-  
-  const [name, setName] = React.useState("");
-  const [address, setAddress] = React.useState("");
-  const [number, setNumber] = React.useState("");
+
+
+  const handleContinue = async () =>{
+    // try{
+    //   const res = await axios.post("http://localhost:3001/api/addNewLocation", credential)
+ 
+    //   console.log(res.data)
+      
+ 
+    //  }
+    //  catch (err) {
+    //    console.log(err)
+ 
+    //  }
+
+     navigation.navigate("DropOffLocation")
+  }
+
+
   const [checked, setChecked] = React.useState(false);
 
   const saveBox = () => {
-    setChecked(true)
+    setChecked(true);
   };
   return (
     <View>
@@ -40,18 +56,20 @@ const AddNewLocationScreen = () => {
       </View>
       <TextInput
         style={styles.input}
-        onChangeText={setName}
-        value={name}
+        value={credential.name}
+        onChangeText={text => setCredential({...credential,name:text})}
         placeholder="Your Name"
         keyboardType="characters"
+
+
       />
       <View>
         <Text style={styles.address}>Full Address</Text>
       </View>
       <TextInput
         style={styles.input}
-        onChangeText={setAddress}
-        value={address}
+        value={credential.address}
+        onChangeText={text => setCredential({...credential,address:text})}
         placeholder="Address"
         keyboardType="characters"
       />
@@ -60,31 +78,30 @@ const AddNewLocationScreen = () => {
       </View>
       <TextInput
         style={styles.input}
-        onChangeText={setNumber}
-        value={number}
+        value={credential.number}
+        onChangeText={text => setCredential({...credential,number:text})}
         placeholder="Phone Number"
         keyboardType="numeric"
       />
 
       <View style={styles.save}>
-      <CheckBox
-      
-        title="save"
-        left
-        checked={checked}
-        checkedIcon="dot-circle-o"
-        uncheckedIcon="circle-o"
-        onPress={saveBox}
-      />
+        <CheckBox
+          title="save"
+          left
+          checked={checked}
+          checkedIcon="dot-circle-o"
+          uncheckedIcon="circle-o"
+          onPress={saveBox}
+        />
       </View>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.continueButton} onPress={continueButton}>
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.continueButton}
+          onPress={handleContinue}
+        >
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
       </View>
-      
-
-      
     </View>
   );
 };
@@ -128,7 +145,6 @@ const styles = StyleSheet.create({
   save: {
     marginTop: 30,
     marginLeft: 15,
-
   },
   button: {
     marginTop: -52,
@@ -150,7 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: "40%",
     height: 40,
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
     marginVertical: 10,
   },

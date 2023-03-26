@@ -14,6 +14,9 @@ import DropOffLocation from "./src/screen/DropOffLocation/DropOffLocation";
 import DeliveryItemsDetails from "./src/screen/DeliveryItemsDetails";
 import MakePayment from "./src/screen/MakePayment";
 import { NavigationContainer } from "@react-navigation/native";
+import OrderSummary from "./src/screen/OrderSummary";
+import PaymentSuccessful from "./src/screen/PaymentSuccessful";
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function App() {
@@ -21,20 +24,17 @@ export default function App() {
   return (
     <TailwindProvider utilities={utilities}>
       <NavigationContainer>
-        <stack.Navigator initialRouteName="WelcomeScreen">
-          <stack.Screen name="WelcomeScreen" component={WelcomeScreen}  />
+        <stack.Navigator  initialRouteName="WelcomeScreen">
+          <stack.Screen name="welcomeScreen" component={WelcomeScreen} ></stack.Screen>
           <stack.Screen name="SignInScreen" component={SignInScreen}  />
+          <stack.Screen name="RegisterScreen" component={RegisterScreen}></stack.Screen>
           <stack.Screen name="HomeScreen" component={HomeScreen}></stack.Screen>
+          <stack.Screen name="PickupLocation" component={PickupLocation}></stack.Screen>
+          <stack.Screen name="AddNewLocationScreen" component={AddNewLocationScreen}></stack.Screen>
+          <stack.Screen name="DropOffLocation" component={DropOffLocation}></stack.Screen>
+          <stack.Screen name="DeliveryItemsDetails" component={DeliveryItemsDetails}></stack.Screen>
         </stack.Navigator>
       </NavigationContainer>
-
-      <NavigationContainer>
-        
-      </NavigationContainer>
-
-
-
-
     </TailwindProvider>
   );
 }
