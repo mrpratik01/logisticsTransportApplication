@@ -17,6 +17,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import shipmentHistory from "../ShipmentHistory";
 
 const HomeScreen = ({navigation}) => {
   const fundWallet = () => {
@@ -25,6 +26,11 @@ const HomeScreen = ({navigation}) => {
   const shipPackage = () => {
 
     navigation.navigate("PickupLocation")
+  };
+
+  const shipmentHistory = () => {
+
+    navigation.navigate("shipmentHistory")
   };
 
   const tailwind = useTailwind();
@@ -56,7 +62,7 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
+          <TouchableOpacity style={styles.shipPackage} onPress={shipmentHistory}>
           <FontAwesome name="history" size={40} color="#3B71F3" />
             <Text
               style={{

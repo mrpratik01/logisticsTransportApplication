@@ -4,23 +4,24 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  useState,
+
 } from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-const DeliveryItemsDetails = () => {
+const DeliveryItemsDetails = ({navigation}) => {
   const backPressed = () => {
-    alert("Okay");
+    navigation.navigate("DropOffLocation")
   };
 
   const continueButton = () => {
     alert("Okay");
   };
 
+  const [credential , setCredential] = useState({description:'',category:'', weight:''})
   const [selectedValue, setSelectedValue] = React.useState("item1");
   const [location, onChangeLocation] = React.useState("");
   const [category, setCategory] = React.useState("");
@@ -43,10 +44,9 @@ const DeliveryItemsDetails = () => {
 
       <TextInput
         style={styles.input}
-        onChangeText={onChangeLocation}
-        value={location}
         placeholder="Full Description"
-        keyboardType="numeric"
+        value={credential.description}
+        onChangeText={text => setCredential({...credential,description:text})}
       />
 
       <View>
@@ -54,8 +54,8 @@ const DeliveryItemsDetails = () => {
       </View>
       <TextInput
         style={styles.input}
-        onChangeText={setCategory}
-        value={category}
+        value={credential.category}
+        onChangeText={text => setCredential({...credential,category:text})}
         placeholder="Category"
         keyboardType="characters"
       />
@@ -93,10 +93,11 @@ const DeliveryItemsDetails = () => {
         <Text style={styles.weight}>Weight</Text>
           <TextInput
             style={styles.weightInput}
-            onChangeText={onChangeLocation}
-            value={location}
             placeholder="Wight (KG)"
             keyboardType="numeric"
+            value={credential.weight}
+            onChangeText={text => setCredential({...credential,weight:text})}
+            
           />
         </View>
       </View>

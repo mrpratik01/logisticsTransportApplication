@@ -16,7 +16,7 @@ const AddNewLocationScreen = ({navigation}) => {
   const [credential , setCredential] = useState({name:'', address:'', number: ''})
 
   const backPressed = () => {
-    alert("Okay");
+    navigation.navigate("PickupLocation")
   };
 
 

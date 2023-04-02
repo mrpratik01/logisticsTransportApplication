@@ -12,7 +12,7 @@ import { CheckBox } from "react-native-elements";
 
 const PickupLocation = ({navigation}) => {
   const backPressed = () => {
-    alert("Okay");
+    navigation.navigate("HomeScreen")
   };
   const Edit = () => {
 
@@ -21,10 +21,7 @@ const PickupLocation = ({navigation}) => {
 
   };
   const continueButton = () => {
-    navigation.navigate("",{
-      
-    })
-    alert("Okay");
+    navigation.navigate("DropOffLocation")
   };
 
   const [location, onChangeLocation] = React.useState("");

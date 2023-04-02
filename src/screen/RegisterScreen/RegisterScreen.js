@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, useWindowDimensions, Text, StyleSheet, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, useWindowDimensions, Text, StyleSheet, Image, Alert } from 'react-native';
 import axios from 'axios';
 import {useTailwind} from 'tailwind-rn';
 import logo from '../../../assets/images/logo.png'
+// import { Toast } from 'react-native-toast-message/lib/src/Toast';
 const RegisterScreen = ({navigation}) => {
 
   const [registerData , setRegisterData] = useState({name:'', email:'', number: '', password: ''})
@@ -12,12 +13,29 @@ const RegisterScreen = ({navigation}) => {
 
 
   const handleRegister = async () => {
+
+    // Toast.show(
+    //   {
+    //     type: "success",
+    //     text1: "Registered Successfully",
+    //     text2: "lorem ispum sadfasfsa",
+    //     autoHide: true,
+    //     visibilityTime: 2500,
+    //     onShow: () => console.log("visible"),
+
+    //   }
+    //  )
+
     try{
      const res = await axios.post("http://localhost:3001/api/signup", registerData)
 
      console.log(res.data)
 
+     
+
      navigation.navigate("HomeScreen")
+
+     Alert.alert('Registered', 'Registered Successfully', [{text: 'Okay', onPress: () => console.log("alert closed")}]);
 
 
     }

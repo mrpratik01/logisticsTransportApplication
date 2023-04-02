@@ -12,12 +12,12 @@ import { CheckBox } from "react-native-elements";
 
 const DropOffLocation = ({navigation}) => {
   const backPressed = () => {
-    alert("Okay");
+   navigation.navigate("PickupLocation")
   };
 
 
   const Edit = () => {
-    navigation.navigate("AddNewLocation")
+    navigation.navigate("AddNewLocationScreen")
   };
   const continueButton = () => {
     navigation.navigate("DeliveryItemsDetails")

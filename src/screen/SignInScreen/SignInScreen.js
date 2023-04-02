@@ -34,18 +34,19 @@ const SignInScreen = ({navigation}) => {
   // };
 
   const handleLogin = async () =>{
+    console.log(credential)
     const url = 'http://localhost:3001/api/login';
-    await axios.post(url, credential).then((response) => {
-      const result = response.data;
-      const {message, status, data} = result;
-      console.log(response)
-
+    
+    try{
+      const res = await axios.post(url, credential)
       navigation.navigate("HomeScreen")
 
+      console.log(res.data)
+    }catch(err){
+      console.log(err)
+    }
+    
 
-    }).catch(error =>  {
-      console.log(error)
-    })
   }
 
 
@@ -70,54 +71,54 @@ const SignInScreen = ({navigation}) => {
 
 
 
-  const handleCheckEmail = text => {
-    let re = /\S+@\S+\.\S+/;
-    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  // const handleCheckEmail = text => {
+  //   let re = /\S+@\S+\.\S+/;
+  //   let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
-    setEmail(text);
-    if (re.test(text) || regex.test(text)){
-      setCheckValidEmail(false);
+  //   setEmail(text);
+  //   if (re.test(text) || regex.test(text)){
+  //     setCheckValidEmail(false);
 
-    } else {
-      setCheckValidEmail(true)
-    }
+  //   } else {
+  //     setCheckValidEmail(true)
+  //   }
 
-  }
+  // }
 
-  const checkPasswordValidity = value => {
-    const isNonWhiteSpace = /^\S*$/;
-    if (!isNonWhiteSpace.test(value)) {
-      return 'Password must not contain Whitespaces.';
-    }
+  // const checkPasswordValidity = value => {
+  //   const isNonWhiteSpace = /^\S*$/;
+  //   if (!isNonWhiteSpace.test(value)) {
+  //     return 'Password must not contain Whitespaces.';
+  //   }
 
-    const isContainsUppercase = /^(?=.*[A-Z]).*$/;
-    if (!isContainsUppercase.test(value)) {
-      return 'Password must have at least one Uppercase Character.';
-    }
+  //   const isContainsUppercase = /^(?=.*[A-Z]).*$/;
+  //   if (!isContainsUppercase.test(value)) {
+  //     return 'Password must have at least one Uppercase Character.';
+  //   }
 
-    const isContainsLowercase = /^(?=.*[a-z]).*$/;
-    if (!isContainsLowercase.test(value)) {
-      return 'Password must have at least one Lowercase Character.';
-    }
+  //   const isContainsLowercase = /^(?=.*[a-z]).*$/;
+  //   if (!isContainsLowercase.test(value)) {
+  //     return 'Password must have at least one Lowercase Character.';
+  //   }
 
-    const isContainsNumber = /^(?=.*[0-9]).*$/;
-    if (!isContainsNumber.test(value)) {
-      return 'Password must contain at least one Digit.';
-    }
+  //   const isContainsNumber = /^(?=.*[0-9]).*$/;
+  //   if (!isContainsNumber.test(value)) {
+  //     return 'Password must contain at least one Digit.';
+  //   }
 
-    const isValidLength = /^.{8,16}$/;
-    if (!isValidLength.test(value)) {
-      return 'Password must be 8-16 Characters Long.';
-    }
+  //   const isValidLength = /^.{8,16}$/;
+  //   if (!isValidLength.test(value)) {
+  //     return 'Password must be 8-16 Characters Long.';
+  //   }
 
-    const isContainsSymbol =
-      /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
-    if (!isContainsSymbol.test(value)) {
-      return 'Password must contain at least one Special Symbol.';
-    }
+  //   const isContainsSymbol =
+  //     /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+  //   if (!isContainsSymbol.test(value)) {
+  //     return 'Password must contain at least one Special Symbol.';
+  //   }
 
-    return null;
-  };
+  //   return null;
+  // };
 
 
   // const handleLogin = () => {
