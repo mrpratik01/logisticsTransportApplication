@@ -22,16 +22,7 @@ const SignInScreen = ({navigation}) => {
   const [checkValidEmail, setCheckValidEmail] = useState(false)
   const tailwind = useTailwind();
   const { height } = useWindowDimensions();
-  // const [message, setMessage] = useState();
-  // const [messageType, setMessageType] = useState();
 
-  // const login = () => {
-  //   if (email == "Pratik" && password == "Bhattarai"){
-  //     Alert.alert(`Thanks ${email}`)
-  //   }else {
-  //     Alert.alert("the username or password is not correct ")
-  //   }
-  // };
 
   const handleLogin = async () =>{
     console.log(credential)
@@ -49,7 +40,6 @@ const SignInScreen = ({navigation}) => {
 
   }
 
-
   const handleRegister = () =>{
 
     navigation.navigate("RegisterScreen")
@@ -57,99 +47,8 @@ const SignInScreen = ({navigation}) => {
    
   }
 
-  // const handleMessage = (message, type) => {
-  //   setMessage()
-  //   const message () => {
-
-  //   }
-
-  // }
-
-  // const handleLogin = () => {
-  //   const checkPassword = checkPasswordV
-  // }
-
-
-
-  // const handleCheckEmail = text => {
-  //   let re = /\S+@\S+\.\S+/;
-  //   let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-
-  //   setEmail(text);
-  //   if (re.test(text) || regex.test(text)){
-  //     setCheckValidEmail(false);
-
-  //   } else {
-  //     setCheckValidEmail(true)
-  //   }
-
-  // }
-
-  // const checkPasswordValidity = value => {
-  //   const isNonWhiteSpace = /^\S*$/;
-  //   if (!isNonWhiteSpace.test(value)) {
-  //     return 'Password must not contain Whitespaces.';
-  //   }
-
-  //   const isContainsUppercase = /^(?=.*[A-Z]).*$/;
-  //   if (!isContainsUppercase.test(value)) {
-  //     return 'Password must have at least one Uppercase Character.';
-  //   }
-
-  //   const isContainsLowercase = /^(?=.*[a-z]).*$/;
-  //   if (!isContainsLowercase.test(value)) {
-  //     return 'Password must have at least one Lowercase Character.';
-  //   }
-
-  //   const isContainsNumber = /^(?=.*[0-9]).*$/;
-  //   if (!isContainsNumber.test(value)) {
-  //     return 'Password must contain at least one Digit.';
-  //   }
-
-  //   const isValidLength = /^.{8,16}$/;
-  //   if (!isValidLength.test(value)) {
-  //     return 'Password must be 8-16 Characters Long.';
-  //   }
-
-  //   const isContainsSymbol =
-  //     /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
-  //   if (!isContainsSymbol.test(value)) {
-  //     return 'Password must contain at least one Special Symbol.';
-  //   }
-
-  //   return null;
-  // };
-
-
-  // const handleLogin = () => {
-  //   const checkPassword = checkPasswordValidity(password);
-  //   if(!checkPassword) {
-  //     user_login({
-  //       email: email,
-  //       password:password
-
-  //     }).then((result) => { 
-  //       if (result.status == 200) {
-  //         AsyncStorage.setItem("AccessToken", )
-  //       }
-
-  //     })
-  //   } else {
-  //     alert(checkPassword)
-  //   }
-
-  // }
-
-
-
-  
-
   return (
-    // <View style={styles.root}>
-    //     <Image source={logo} style={[styles.logo, {height: height * 0.4}] } resizeMode="contain" ></Image>
-    //     <Text style={tailwind('font-bold text-xl')}>Enter your phone number</Text>
-    //     <CustomInput></CustomInput>
-    // </View>
+
 
     <View style={styles.container}>
       <Image
@@ -195,13 +94,6 @@ const SignInScreen = ({navigation}) => {
   );
 };
 
-// const styles = StyleSheet.create({
-//   root: {
-//       alignItems: 'center',
-//       padding: 20,
-//   },
-
-// })
 
 const styles = StyleSheet.create({
   container: {

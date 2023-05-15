@@ -9,17 +9,26 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
+import { useRoute } from "@react-navigation/native"
+
 
 const DropOffLocation = ({navigation}) => {
   const backPressed = () => {
    navigation.navigate("PickupLocation")
   };
 
+  // const route = useRoute()
+  // const pickupAddress = route.params.pickupAddress
+
+
 
   const Edit = () => {
-    navigation.navigate("AddNewLocationScreen")
+    navigation.navigate("AddNewDropLocation")
   };
+
+  
   const continueButton = () => {
+    console.log(pickupAddress)
     navigation.navigate("DeliveryItemsDetails")
   };
 

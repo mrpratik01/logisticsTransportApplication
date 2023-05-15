@@ -9,31 +9,43 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
 
-const OrderSummary = () => {
+const OrderSummary = ({navigation}) => {
+
+  const [credential, setCredential] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/orderSummary/46")
+      .then((res) => setCredential(res.data.result[0]))
+      .catch((err) => console.log(err));
+  }, []);
+
+
   const backPressed = () => {
-    alert("Okay");
+    navigation.navigate("DeliveryItemsDetails")
   };
   const continueButton = () => {
-    alert("Okay");
+    navigation.navigate("PaymentSuccessful")
   };
   const data = [
-    { id: "a", value: "Total Quantity:" },
-    { id: "b", value: "2" },
-    { id: "c", value: "Weight of items:" },
-    { id: "d", value: "50Kg" },
-    { id: "e", value: "Vehicle Type: " },
-    { id: "f", value: "Mini-Truck" },
+    { id: "a", value: "Package Description:" },
+    { id: "b", value: credential.packagedescription },
+    { id: "c", value: "Pickup Address:" },
+    { id: "d", value: credential.pickup_address },
+    { id: "e", value: "Drop-off Address: " },
+    { id: "f", value: credential.dropoff_address },
   ];
   const data2 = [
     { id: "a", value: "Delivery Charge:" },
-    { id: "b", value: "NPR 1500" },
+    { id: "b", value: `NPR ${credential.amount}` },
     { id: "c", value: "Service Charge:" },
     { id: "d", value: "150" },
     { id: "e", value: "Total Amount: " },
-    { id: "f", value: "1650" },
+    { id: "f", value: TotalAMT },
   ];
 
   const numColumns = 2;

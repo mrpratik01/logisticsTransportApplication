@@ -9,10 +9,14 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
 import axios from 'axios';
+import { useRoute } from "@react-navigation/native"
 
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 
 const AddNewLocationScreen = ({navigation}) => {
 
+  const {pickupAddress, updatePickupAddress} = useContext(AppContext)
   const [credential , setCredential] = useState({name:'', address:'', number: ''})
 
   const backPressed = () => {
@@ -33,7 +37,7 @@ const AddNewLocationScreen = ({navigation}) => {
  
     //  }
 
-     navigation.navigate("DropOffLocation")
+     navigation.navigate("DropOffLocation", {pickupAddress: credential.address})
   }
 
 
@@ -48,7 +52,7 @@ const AddNewLocationScreen = ({navigation}) => {
         <Ionicons name="arrow-back-sharp" size={40} color="black" />
       </TouchableOpacity>
       <View style={{ flex: 0, justifyContent: "center", alignItems: "center" }}>
-        <Text style={styles.title}>Add a new address information</Text>
+        <Text style={styles.title}>Add a new Pickup Location</Text>
       </View>
 
       <View>
@@ -68,8 +72,8 @@ const AddNewLocationScreen = ({navigation}) => {
       </View>
       <TextInput
         style={styles.input}
-        value={credential.address}
-        onChangeText={text => setCredential({...credential,address:text})}
+        value={pickupAddress}
+        onChangeText={address => updatePickupAddress(address)}
         placeholder="Address"
         keyboardType="characters"
       />

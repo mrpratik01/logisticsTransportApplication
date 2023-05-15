@@ -1,99 +1,124 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, useWindowDimensions, Text, StyleSheet, Image, Alert } from 'react-native';
-import axios from 'axios';
-import {useTailwind} from 'tailwind-rn';
-import logo from '../../../assets/images/logo.png'
-// import { Toast } from 'react-native-toast-message/lib/src/Toast';
-const RegisterScreen = ({navigation}) => {
+import React, { useState } from "react";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  useWindowDimensions,
+  Text,
+  StyleSheet,
+  Image,
+  Alert,
+} from "react-native";
+import axios from "axios";
+import { useTailwind } from "tailwind-rn";
+import logo from "../../../assets/images/logo.png";
 
-  const [registerData , setRegisterData] = useState({name:'', email:'', number: '', password: ''})
-  // const [registerData, setRegisterData] = useState()
+const RegisterScreen = ({ navigation }) => {
+  const [registerData, setRegisterData] = useState({
+    name: "",
+    email: "",
+    number: "",
+    password: "",
+  });
+  
   const tailwind = useTailwind();
-  const {height} = useWindowDimensions()
-
+  const { height } = useWindowDimensions();
 
   const handleRegister = async () => {
 
-    // Toast.show(
-    //   {
-    //     type: "success",
-    //     text1: "Registered Successfully",
-    //     text2: "lorem ispum sadfasfsa",
-    //     autoHide: true,
-    //     visibilityTime: 2500,
-    //     onShow: () => console.log("visible"),
 
-    //   }
-    //  )
+    if (registerData.name === "") {
+      Alert.alert("name is required");
+    } else if (registerData.email === "") {
+      Alert.alert("email is required");
+    } else if (registerData.number === "") {
+      Alert.alert("Phone Number is required");
+    } else if (registerData.password == "") {
+      Alert.alert("password is required");
+    } else {
+      try {
+        const res = await axios.post(
+          "http://localhost:3001/api/signup",
+          registerData
+        );
 
-    try{
-     const res = await axios.post("http://localhost:3001/api/signup", registerData)
+        console.log(res.data);
 
-     console.log(res.data)
+        navigation.navigate("HomeScreen");
 
-     
-
-     navigation.navigate("HomeScreen")
-
-     Alert.alert('Registered', 'Registered Successfully', [{text: 'Okay', onPress: () => console.log("alert closed")}]);
-
-
+        Alert.alert("Registered", "Registered Successfully", [
+          { text: "Okay", onPress: () => console.log("alert closed") },
+        ]);
+      } catch (err) {
+        console.log(err);
+      }
     }
-    catch (err) {
-      console.log(err)
-
-    }
-
-
-  }
+  };
 
   const handleChange = (e) => {
     setRegisterData((pre) => ({
-      ...pre,[e.target.name] : e.target.value
-    }
-    ))
-
-  }
-
+      ...pre,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <View style={styles.container}>
-        <Image source={logo} style={[styles.logo, {height: height * 0.4}] } resizeMode="contain" ></Image>
-        <Text style={[tailwind('font-bold text-xl'), styles.title]}>Create Account</Text>
+      <Image
+        source={logo}
+        style={[styles.logo, { height: height * 0.4 }]}
+        resizeMode="contain"
+      ></Image>
+      <Text style={[tailwind("font-bold text-xl"), styles.title]}>
+        Create Account
+      </Text>
       <TextInput
         style={styles.inputField}
         type={"text"}
         placeholder="Name"
         value={registerData.name}
-        onChangeText={text => setRegisterData({...registerData,name:text})}
+        onChangeText={(text) =>
+          setRegisterData({ ...registerData, name: text })
+        }
       />
       <TextInput
         style={styles.inputField}
         type={"email"}
         placeholder="Email"
         value={registerData.email}
-        onChangeText={text => setRegisterData({...registerData,email:text})}
+        onChangeText={(text) =>
+          setRegisterData({ ...registerData, email: text })
+        }
       />
       <TextInput
         style={styles.inputField}
         type={"number"}
         placeholder="Phone Number"
         value={registerData.number}
-        onChangeText={text => setRegisterData({...registerData,number:text})}
+        onChangeText={(text) =>
+          setRegisterData({ ...registerData, number: text })
+        }
       />
       <TextInput
         style={styles.inputField}
         type={"password"}
         placeholder="Password"
         value={registerData.password}
-        onChangeText={text => setRegisterData({...registerData,password:text})}
+        onChangeText={(text) =>
+          setRegisterData({ ...registerData, password: text })
+        }
       />
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button2} onPress={() => console.log('Sign in clicked')}>
-        <Text style={ [tailwind('font-bold '),styles.button2]}>Already have an account? Login</Text>
+      <TouchableOpacity
+        style={styles.button2}
+        onPress={() => navigation.navigate("SignInScreen")}
+      >
+        <Text style={[tailwind("font-bold "), styles.button2]}>
+          Already have an account? Login
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -102,39 +127,38 @@ const RegisterScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#F5FCFF",
   },
 
   title: {
-   padding: 10,
+    padding: 10,
   },
 
   logo: {
     marginTop: -100,
-
   },
 
   inputField: {
-    width: '80%',
+    width: "80%",
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     marginVertical: 10,
     padding: 10,
   },
   button: {
-    backgroundColor: '#3B71F3',
-    width: '80%',
+    backgroundColor: "#3B71F3",
+    width: "80%",
     height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginVertical: 10,
   },
   buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
 });
 

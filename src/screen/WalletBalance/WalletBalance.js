@@ -5,12 +5,21 @@ import { Entypo } from "@expo/vector-icons";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const WalletBalance = () => {
+const WalletBalance = ({navigation}) => {
   const backPressed = () => {
-    alert("okay");
+    navigation.navigate("HomeScreen")
   };
   const Edit = () => {
     alert("okay");
+  };
+  const homePressed = () => {
+    navigation.navigate("HomeScreen")
+  };
+  const walletPressed = () => {
+    navigation.navigate("walletBalance")
+  };
+  const profilePressed = () => {
+    navigation.navigate("profileSection")
   };
   return (
     <View>
@@ -20,8 +29,8 @@ const WalletBalance = () => {
 
       <View>
         <TouchableOpacity style={styles.buttomNavWallet} onPress={backPressed}>
-          <Entypo name="wallet" size={50} color="#3B71F3" />
-        </TouchableOpacity>
+            <Entypo name="wallet" size={50} color="#3B71F3" />
+          </TouchableOpacity>
       </View>
 
       <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -50,23 +59,30 @@ const WalletBalance = () => {
         </View>
       </View>
 
-      <Text style={styles.balance}>Balance</Text>
+      <Text style={styles.balance}>Transaction History</Text>
 
       <View style={styles.shipmentText}>
         <View>
           <Text style={{ fontSize: 18, fontWeight: "600" }}>
-            Kathmandu to Damak
+            Top Up from Khalti
           </Text>
 
-          <Text style={{ fontSize: 18, fontWeight: "600" }}>
-            Category Clothing
-          </Text>
-
-          <Text style={{ fontSize: 18, fontWeight: "500" }}>Weight: 200KG</Text>
         </View>
 
         <View style={styles.amount}>
           <Text style={{ fontSize: 18, fontWeight: "700" }}>NPR 6000</Text>
+        </View>
+      </View>
+      <View style={styles.shipmentText}>
+        <View>
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            Package Payment
+          </Text>
+
+        </View>
+
+        <View style={styles.amount}>
+          <Text style={{ fontSize: 18, fontWeight: "700" }}>NPR 2000</Text>
         </View>
       </View>
 
@@ -78,36 +94,20 @@ const WalletBalance = () => {
         }}
       >
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
+          <TouchableOpacity style={styles.buttomNav} onPress={homePressed}>
             <Entypo name="home" size={50} color="#3B71F3" />
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
+          <TouchableOpacity style={styles.buttomNav} onPress={walletPressed}>
             <Entypo name="wallet" size={50} color="#3B71F3" />
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
+          <TouchableOpacity style={styles.buttomNav} onPress={profilePressed}>
             <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
           </TouchableOpacity>
         </View>
-
-        {/* <View>
-          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
-            <Feather name="package" size={40} color="#3B71F3" />
-            <Text
-              style={{
-                color: "black",
-                fontWeight: "bold",
-                fontSize: 18,
-                marginTop: 10,
-              }}
-            >
-              Ship Packages
-            </Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </View>
   );
@@ -129,9 +129,9 @@ const styles = StyleSheet.create({
 
   balance: {
     marginTop: 150,
-    marginLeft: 50,
+    marginLeft: 20,
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 24,
   },
 
   shipmentText: {
@@ -217,32 +217,31 @@ const styles = StyleSheet.create({
 
   buttomNavWallet: {
    
-
-    // marginLeft: 250,
-    padding: "20px",
-    marginTop: 0,
-    backgroundColor: "white",
-    borderRadius: 5,
-    width: "100%",
-    height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 10,
+    padding: 5,
+
+    // marginLeft: 250,
+    // padding: 20,
+    // marginTop: 0,
+    // backgroundColor: "white",
+    // borderRadius: 5,
+    // width: "100%",
+    // height: 40,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // marginVertical: 10,
   },
   buttomNav: {
-
-   
-   
-
     // marginLeft: 250,
-    padding: "20px",
-    marginTop:350,
+    padding: 0,
+    marginTop: 300,
+    alignContent: "flex-end",
+    justifyContent: "flex-end",
     backgroundColor: "white",
     borderRadius: 5,
     width: "100%",
     height: 40,
-    alignItems: "center",
-    justifyContent: "center",
     marginVertical: 10,
   },
   buttonText: {

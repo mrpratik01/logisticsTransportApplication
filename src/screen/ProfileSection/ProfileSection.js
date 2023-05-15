@@ -14,15 +14,22 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const ProfileSection = () => {
+const ProfileSection = ({navigation}) => {
   const backPressed = () => {
-    alert("okay");
+    navigation.navigate("HomeScreen")
   };
   const Edit = () => {
     alert("okay");
   };
-  const shipPackage = () => {
-    alert("okay");
+  
+  const homePressed = () => {
+    navigation.navigate("HomeScreen")
+  };
+  const walletPressed = () => {
+    navigation.navigate("walletBalance")
+  };
+  const profilePressed = () => {
+    navigation.navigate("profileSection")
   };
 
   const tailwind = useTailwind();
@@ -146,38 +153,22 @@ const ProfileSection = () => {
 
       <View style={{flex:0.2, flexDirection: 'row', justifyContent: 'space-around'}}>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={shipPackage}>
+          <TouchableOpacity style={styles.buttomNav} onPress={homePressed}>
           <Entypo name="home" size={50} color="#3B71F3" />
             
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={shipPackage}>
+          <TouchableOpacity style={styles.buttomNav} onPress={walletPressed}>
           <Entypo name="wallet" size={50} color="#3B71F3" />
             
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={shipPackage}>
+          <TouchableOpacity style={styles.buttomNav} onPress={profilePressed}>
           <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
           </TouchableOpacity>
         </View>
-
-        {/* <View>
-          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
-            <Feather name="package" size={40} color="#3B71F3" />
-            <Text
-              style={{
-                color: "black",
-                fontWeight: "bold",
-                fontSize: 18,
-                marginTop: 10,
-              }}
-            >
-              Ship Packages
-            </Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </View>
   );

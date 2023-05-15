@@ -6,6 +6,7 @@ import {
   useWindowDimensions,
   ImageBackground,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React from "react";
 import { useTailwind } from "tailwind-rn";
@@ -18,10 +19,12 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import shipmentHistory from "../ShipmentHistory";
+import CalculateRate from "../CalculateRate";
 
 const HomeScreen = ({navigation}) => {
   const fundWallet = () => {
-    alert("Okay");
+
+    navigation.navigate("walletBalance")
   };
   const shipPackage = () => {
 
@@ -31,6 +34,22 @@ const HomeScreen = ({navigation}) => {
   const shipmentHistory = () => {
 
     navigation.navigate("shipmentHistory")
+  };
+  const walletPressed = () => {
+
+    navigation.navigate("walletBalance")
+  };
+  const profilePressed = () => {
+
+    navigation.navigate("profileSection")
+  };
+  const calculateRate = () => {
+
+    navigation.navigate("calculateRate")
+  };
+  const referFriend = () => {
+
+    Alert.alert("Refer Link")
   };
 
   const tailwind = useTailwind();
@@ -95,7 +114,7 @@ const HomeScreen = ({navigation}) => {
       </View>
       <View style={{flex:0.2, flexDirection: 'row', justifyContent: 'space-around'}}>
         <View>
-          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
+          <TouchableOpacity style={styles.shipPackage} onPress={calculateRate}>
           <MaterialIcons name="calculate" size={40} color="#3B71F3" />
             <Text
               style={{
@@ -110,7 +129,7 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
+          <TouchableOpacity style={styles.shipPackage} onPress={referFriend}>
           <FontAwesome5 name="user-friends" size={40} color="#3B71F3" />
             <Text
               style={{
@@ -156,13 +175,13 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={shipPackage}>
+          <TouchableOpacity style={styles.buttomNav} onPress={walletPressed}>
           <Entypo name="wallet" size={50} color="#3B71F3" />
             
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={shipPackage}>
+          <TouchableOpacity style={styles.buttomNav} onPress={profilePressed}>
           <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
           </TouchableOpacity>
         </View>

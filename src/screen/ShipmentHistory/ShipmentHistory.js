@@ -1,42 +1,63 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import axios from "axios";
 
-const ShipmentHistory = () => {
+const ShipmentHistory = ({ navigation }) => {
+  const [credential, setCredential] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/packages/44")
+      .then((res) => setCredential(res.data.result))
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(credential);
+
   const backPressed = () => {
-    alert("okay");
+    navigation.navigate("HomeScreen");
   };
   return (
     <View>
       <TouchableOpacity style={styles.backArrow} onPress={backPressed}>
-        <Ionicons name="arrow-back-sharp" size={40} color="black" />
+        <Ionicons name="arrow-back-sharp" size={40} color="" />
       </TouchableOpacity>
 
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 24, fontWeight: "bold", color: "" }}>
           Shipment History
         </Text>
       </View>
 
-      <View style={styles.shipmentText}>
-        <View>
-          <Text style={{ fontSize: 18, fontWeight: "600" }}>
-            Kathmandu to Damak
-          </Text>
+      {credential.map((data) => {
+        return(
+          <View style={styles.shipmentText}>
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "600" }}>
+             {data.pickup_address} to {data.dropoff_address}
+            </Text>
 
-          <Text style={{ fontSize: 18, fontWeight: "600" }}>
-            Category Clothing
-          </Text>
+            <Text style={{ fontSize: 18, fontWeight: "600" }}>
+              {data.package_category}
+            </Text>
 
-          <Text style={{ fontSize: 18, fontWeight: "500" }}>Weight: 200KG</Text>
+            <Text style={{ fontSize: 18, fontWeight: "500" }}>
+              Weight: {data.weight}
+            </Text>
+          </View>
+
+          <View style={styles.amount}>
+            <Text style={{ fontSize: 18, fontWeight: "700" }}>NPR 6000</Text>
+          </View>
         </View>
-
-        <View style={styles.amount}>
-          <Text style={{ fontSize: 18, fontWeight: "700" }}>NPR 6000</Text>
-        </View>
-      </View>
+        )
+      }) 
+       
+      }
+    
 
       <View
         style={{
@@ -59,30 +80,14 @@ const ShipmentHistory = () => {
           <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
             <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
           </TouchableOpacity>
-        </View>
-
-        {/* <View>
-          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
-            <Feather name="package" size={40} color="#3B71F3" />
-            <Text
-              style={{
-                color: "black",
-                fontWeight: "bold",
-                fontSize: 18,
-                marginTop: 10,
-              }}
-            >
-              Ship Packages
-            </Text>
-          </TouchableOpacity>
-        </View> */}
+        </View>-
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  backArrow: {
+    backArrow: {
     marginTop: 60,
     marginLeft: 30,
   },
@@ -162,8 +167,7 @@ const styles = StyleSheet.create({
   },
 
   buttomNav: {
-
-    marginTop: 600,
+    marginTop: 350,
     backgroundColor: "white",
     borderRadius: 5,
     width: "100%",
@@ -182,10 +186,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
-
-
-}); 
+});
 
 export default ShipmentHistory;

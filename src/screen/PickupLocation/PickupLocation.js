@@ -15,7 +15,6 @@ const PickupLocation = ({navigation}) => {
     navigation.navigate("HomeScreen")
   };
   const Edit = () => {
-
     navigation.navigate("AddNewLocationScreen")
 
 
