@@ -29,7 +29,7 @@ export default function App() {
   const stack = createNativeStackNavigator();
   return (
     <TailwindProvider utilities={utilities}>
-      {/* <AppProvider>
+      <AppProvider>
         <NavigationContainer>
           <stack.Navigator  screenOptions={{
                 headerShown: false,
@@ -85,10 +85,18 @@ export default function App() {
               name="orderSummary"
               component={OrderSummary}
             ></stack.Screen>
+            <stack.Screen
+              name="paymentSuccessful"
+              component={PaymentSuccessful}
+            ></stack.Screen>
+            <stack.Screen
+              name="makePayment"
+              component={MakePayment}
+            ></stack.Screen>
           </stack.Navigator>
         </NavigationContainer>
-      </AppProvider> */}
-      <OrderSummary></OrderSummary>
+      </AppProvider>
+
 
     </TailwindProvider>
   );

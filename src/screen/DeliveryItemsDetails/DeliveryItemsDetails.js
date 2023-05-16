@@ -28,20 +28,27 @@ const DeliveryItemsDetails = ({ navigation }) => {
 
   const [credential, setCredential] = useState({
     packageDescription: "",
-    pickup_Address: pickupAddress,
+    pickup_address: pickupAddress,
     dropoff_address: dropAddress,
-    package_Category: "",
-    totalKM: "",
+    package_category: "",
+    kilometer: "",
     weight: "",
   });
-  const [selectedValue, setSelectedValue] = React.useState("item1");
-  const [location, onChangeLocation] = React.useState("");
-  const [category, setCategory] = React.useState("");
+
 
 
   const continueButton = async () => {
-      console.log(credential)
+
+    const url = 'http://localhost:3001/api/create-packages';
+
+    try{
+      const res = await axios.post(url, credential)
       navigation.navigate("orderSummary");
+
+      console.log(res.data)
+    }catch(err){
+      console.log(err)
+    }
   };
 
 
@@ -73,7 +80,7 @@ const DeliveryItemsDetails = ({ navigation }) => {
         placeholder="Full Description"
         value={credential.description}
         onChangeText={(text) =>
-          setCredential({ ...credential, description: text })
+          setCredential({ ...credential, packageDescription: text })
         }
       />
 
@@ -84,7 +91,7 @@ const DeliveryItemsDetails = ({ navigation }) => {
         style={styles.input}
         value={credential.category}
         onChangeText={(text) =>
-          setCredential({ ...credential, category: text })
+          setCredential({ ...credential, package_category: text })
         }
         placeholder="Category"
         keyboardType="characters"
@@ -103,9 +110,9 @@ const DeliveryItemsDetails = ({ navigation }) => {
             style={styles.weightInput}
             placeholder="KM"
             keyboardType="numeric"
-            value={credential.totalKM}
+            value={credential.kilometer}
             onChangeText={(text) =>
-              setCredential({ ...credential, totalKM: text })
+              setCredential({ ...credential, kilometer: text })
             }
           />
         </View>

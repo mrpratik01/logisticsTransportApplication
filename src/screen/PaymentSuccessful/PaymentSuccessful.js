@@ -14,9 +14,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons'; 
 
 
-const PaymentSuccessful = () => {
+const PaymentSuccessful = ({navigation}) => {
   const backPressed = () => {
-    alert("Okay");
+   
   };
 
   const data = [
@@ -30,7 +30,7 @@ const PaymentSuccessful = () => {
     { id: "h", value: "760200" },
   ];
   const continueButton = () => {
-    alert("Okay");
+    navigation.navigate("HomeScreen")
   };
   return (
     <View>

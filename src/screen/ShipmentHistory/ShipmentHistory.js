@@ -1,11 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
 
-const ShipmentHistory = ({ navigation }) => {
+const ShipmentHistory = ({navigation}) => {
   const [credential, setCredential] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const ShipmentHistory = ({ navigation }) => {
   console.log(credential);
 
   const backPressed = () => {
-    navigation.navigate("HomeScreen");
+    navigation.navigate("HomeScreen")
   };
   return (
     <View>
@@ -33,31 +33,32 @@ const ShipmentHistory = ({ navigation }) => {
       </View>
 
       {credential.map((data) => {
-        return(
+        return (
+          
+          <ScrollView>
           <View style={styles.shipmentText}>
-          <View>
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>
-             {data.pickup_address} to {data.dropoff_address}
-            </Text>
+            <View>
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                {data.pickup_address} to {data.dropoff_address}
+              </Text>
 
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>
-              {data.package_category}
-            </Text>
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                {data.package_category}
+              </Text>
 
-            <Text style={{ fontSize: 18, fontWeight: "500" }}>
-              Weight: {data.weight}
-            </Text>
+              <Text style={{ fontSize: 18, fontWeight: "500" }}>
+                Weight: {data.weight}
+              </Text>
+            </View>
+
+            <View style={styles.amount}>
+              <Text style={{ fontSize: 18, fontWeight: "700" }}>{data.amount}</Text>
+            </View>
           </View>
 
-          <View style={styles.amount}>
-            <Text style={{ fontSize: 18, fontWeight: "700" }}>NPR 6000</Text>
-          </View>
-        </View>
-        )
-      }) 
-       
-      }
-    
+          </ScrollView>
+        );
+      })}
 
       <View
         style={{
@@ -80,14 +81,14 @@ const ShipmentHistory = ({ navigation }) => {
           <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
             <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
           </TouchableOpacity>
-        </View>-
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    backArrow: {
+  backArrow: {
     marginTop: 60,
     marginLeft: 30,
   },
@@ -167,14 +168,14 @@ const styles = StyleSheet.create({
   },
 
   buttomNav: {
-    marginTop: 350,
+    marginTop: 50,
     backgroundColor: "white",
     borderRadius: 5,
     width: "100%",
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 10,
+    marginVertical: 0,
   },
   buttonText: {
     color: "white",

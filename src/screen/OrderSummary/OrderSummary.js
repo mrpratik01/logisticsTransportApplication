@@ -19,7 +19,7 @@ const OrderSummary = ({navigation}) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/orderSummary/46")
+      .get("http://localhost:3001/api/orderSummary/44")
       .then((res) => setCredential(res.data.result[0]))
       .catch((err) => console.log(err));
   }, []);
@@ -29,8 +29,13 @@ const OrderSummary = ({navigation}) => {
     navigation.navigate("DeliveryItemsDetails")
   };
   const continueButton = () => {
-    navigation.navigate("PaymentSuccessful")
+    navigation.navigate("makePayment")
   };
+
+  const totalAmt = parseInt(credential.amount) + 150 
+
+
+
   const data = [
     { id: "a", value: "Package Description:" },
     { id: "b", value: credential.packagedescription },
@@ -45,7 +50,7 @@ const OrderSummary = ({navigation}) => {
     { id: "c", value: "Service Charge:" },
     { id: "d", value: "150" },
     { id: "e", value: "Total Amount: " },
-    { id: "f", value: TotalAMT },
+    { id: "f", value: totalAmt },
   ];
 
   const numColumns = 2;

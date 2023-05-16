@@ -11,7 +11,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
 
-const MakePayment = () => {
+const MakePayment = ({navigation}) => {
   const backPressed = () => {
     alert("Okay");
   };
@@ -30,7 +30,7 @@ const MakePayment = () => {
   };
 
   const continueButton = () => {
-    alert("Okay");
+    navigation.navigate("paymentSuccessful")
   };
 
   return (
