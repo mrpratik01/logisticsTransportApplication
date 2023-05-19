@@ -9,12 +9,23 @@ const CalculateRate = ({navigation}) => {
 
     const [credential , setCredential] = useState({pickupAddress:'', dropOffAddress:'', totalKM: '', weight: ''})
 
+
+
+    const estimatedAMT = credential.totalKM * 120
+
     const backPressed = () => {
         navigation.navigate("HomeScreen");
       };
 
       const continueButton = () => {
-        Alert.alert("your total cost is estimated 2400")
+        Alert.alert(`Your total estimated cost is ${estimatedAMT}`)
+        pickupAddress(''),
+        dropOffAddress(''),
+        totalKM(''),
+        weight('')
+
+
+
        
       };
   return (
