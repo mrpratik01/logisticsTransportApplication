@@ -19,14 +19,7 @@ const CalculateRate = ({navigation}) => {
 
       const continueButton = () => {
         Alert.alert(`Your total estimated cost is ${estimatedAMT}`)
-        pickupAddress(''),
-        dropOffAddress(''),
-        totalKM(''),
-        weight('')
-
-
-
-       
+        credential('')
       };
   return (
     <View>
