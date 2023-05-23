@@ -21,6 +21,9 @@ const WalletBalance = ({navigation}) => {
   const profilePressed = () => {
     navigation.navigate("profileSection")
   };
+  const topUpScreen = () => {
+    navigation.navigate("topUpScreen")
+  };
   return (
     <View>
       <TouchableOpacity style={styles.backArrow} onPress={backPressed}>
@@ -48,7 +51,7 @@ const WalletBalance = ({navigation}) => {
           justifyContent: "space-around",
         }}>
         <View>
-          <TouchableOpacity style={styles.button} onPress={Edit}>
+          <TouchableOpacity style={styles.button} onPress={topUpScreen}>
             <Text style={styles.buttonText}>Add Money</Text>
           </TouchableOpacity>
         </View>

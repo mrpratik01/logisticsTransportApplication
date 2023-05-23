@@ -1,25 +1,44 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
+import { AppContext } from "../../AppContext";
+
 
 const ShipmentHistory = ({navigation}) => {
   const [credential, setCredential] = useState([]);
+  const {users} = useContext(AppContext)
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/packages/44")
+      .get(`http://localhost:3001/api/packages/${users.userID}`)
       .then((res) => setCredential(res.data.result))
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(credential);
 
   const backPressed = () => {
     navigation.navigate("HomeScreen")
   };
+
+  const shipPackage = () => {
+
+    navigation.navigate("PickupLocation")
+  };
+
+  const walletPressed = () => {
+
+    navigation.navigate("walletBalance")
+  };
+
+  const profilePressed = () => {
+
+    navigation.navigate("profileSection")
+  };
+
+
   return (
     <View>
       <TouchableOpacity style={styles.backArrow} onPress={backPressed}>
@@ -32,10 +51,18 @@ const ShipmentHistory = ({navigation}) => {
         </Text>
       </View>
 
+
+
+      <ScrollView style={styles.scrollStyle}> 
+
+
       {credential.map((data) => {
         return (
           
-          <ScrollView>
+          <ScrollView 
+
+
+          >
           <View style={styles.shipmentText}>
             <View>
               <Text style={{ fontSize: 18, fontWeight: "600" }}>
@@ -60,28 +87,44 @@ const ShipmentHistory = ({navigation}) => {
         );
       })}
 
-      <View
-        style={{
-          flex: 0.2,
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
+      </ScrollView>
+
+
+
+      <View style={{flex:0.2, flexDirection: 'row', justifyContent: 'space-around'}}>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
-            <Entypo name="home" size={50} color="#3B71F3" />
+          <TouchableOpacity style={styles.buttomNav} onPress={shipPackage}>
+          <Entypo name="home" size={50} color="#3B71F3" />
+            
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
-            <Entypo name="wallet" size={50} color="#3B71F3" />
+          <TouchableOpacity style={styles.buttomNav} onPress={walletPressed}>
+          <Entypo name="wallet" size={50} color="#3B71F3" />
+            
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.buttomNav} onPress={backPressed}>
-            <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
+          <TouchableOpacity style={styles.buttomNav} onPress={profilePressed}>
+          <MaterialCommunityIcons name="account" size={50} color="#3B71F3" />
           </TouchableOpacity>
         </View>
+
+        {/* <View>
+          <TouchableOpacity style={styles.shipPackage} onPress={shipPackage}>
+            <Feather name="package" size={40} color="#3B71F3" />
+            <Text
+              style={{
+                color: "black",
+                fontWeight: "bold",
+                fontSize: 18,
+                marginTop: 10,
+              }}
+            >
+              Ship Packages
+            </Text>
+          </TouchableOpacity>
+        </View> */}
       </View>
     </View>
   );
@@ -113,6 +156,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 18,
   },
+
+  scrollStyle: {
+    height: '70%'
+  },
+
   weight: {
     marginTop: 30,
     marginLeft: 15,
@@ -155,7 +203,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 0,
   },
 
   buttonContainer: {
@@ -169,13 +217,15 @@ const styles = StyleSheet.create({
 
   buttomNav: {
     marginTop: 50,
+   
+    // marginLeft: 250,
     backgroundColor: "white",
     borderRadius: 5,
     width: "100%",
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 0,
+    marginVertical: 10, 
   },
   buttonText: {
     color: "white",

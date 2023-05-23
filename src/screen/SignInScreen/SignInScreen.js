@@ -10,14 +10,17 @@ import {
   Alert,
   AsyncStorage,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../../assets/images/logo.png";
 import { useTailwind } from "tailwind-rn";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import axios from "axios";
+import { AppContext } from "../../AppContext";
 
 const SignInScreen = ({navigation}) => {
 
+
+  const { updateUserDetails, users} = useContext(AppContext)
   const [credential , setCredential] = useState({email:'',password:''})
   const [checkValidEmail, setCheckValidEmail] = useState(false)
   const tailwind = useTailwind();
@@ -25,21 +28,19 @@ const SignInScreen = ({navigation}) => {
 
 
   const handleLogin = async () =>{
-    console.log(credential)
     const url = 'http://localhost:3001/api/login';
     
     try{
       const res = await axios.post(url, credential)
+      updateUserDetails(res.data)
       navigation.navigate("HomeScreen")
-
-      console.log(res.data)
     }catch(err){
       console.log(err)
     }
     
 
   }
-
+ 
   const handleRegister = () =>{
 
     navigation.navigate("RegisterScreen")

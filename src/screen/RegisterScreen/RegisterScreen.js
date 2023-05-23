@@ -17,7 +17,7 @@ const RegisterScreen = ({ navigation }) => {
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",
-    number: "",
+    phonenumber: "",
     password: "",
   });
   
@@ -96,7 +96,7 @@ const RegisterScreen = ({ navigation }) => {
         placeholder="Phone Number"
         value={registerData.number}
         onChangeText={(text) =>
-          setRegisterData({ ...registerData, number: text })
+          setRegisterData({ ...registerData, phonenumber: text })
         }
       />
       <TextInput

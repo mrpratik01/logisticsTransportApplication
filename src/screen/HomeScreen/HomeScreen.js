@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import React from "react";
+import React, {useContext} from "react";
 import { useTailwind } from "tailwind-rn";
 import logo from "../../../assets/images/logo.png";
 import { AntDesign } from "@expo/vector-icons";
@@ -20,8 +20,11 @@ import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import shipmentHistory from "../ShipmentHistory";
 import CalculateRate from "../CalculateRate";
+import { AppContext } from "../../AppContext";
 
 const HomeScreen = ({navigation}) => {
+
+  const { updateUserDetails, users} = useContext(AppContext)
   const fundWallet = () => {
 
     navigation.navigate("walletBalance")
@@ -52,12 +55,13 @@ const HomeScreen = ({navigation}) => {
     Alert.alert("Refer Link")
   };
 
+
   const tailwind = useTailwind();
   const { height } = useWindowDimensions();
   return (
     <View style={styles.root}>
       <Text style={styles.title1}>Hello,</Text>
-      <Text style={styles.title2}>Good Morning Ram</Text>
+      <Text style={styles.title2}>Good Morning {users.userName}</Text>
       <Text style={styles.balance}>Balance</Text>
       <Text style={styles.amount}>NPR 10,000</Text>
       <TouchableOpacity style={styles.button} onPress={fundWallet}>

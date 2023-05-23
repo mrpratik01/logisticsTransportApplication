@@ -9,18 +9,20 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import React, {useEffect, useState} from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { AppContext } from "../../AppContext";
 
 const OrderSummary = ({navigation}) => {
 
+  const {users} = useContext(AppContext);
   const [credential, setCredential] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/orderSummary/44")
-      .then((res) => setCredential(res.data.result[0]))
+      .get(`http://localhost:3001/api/orderSummary/${users.userID}`)
+      .then((res) => setCredential(res.data.result[res.data.result.length-1]))
       .catch((err) => console.log(err));
   }, []);
 

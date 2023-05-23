@@ -6,15 +6,17 @@ import {
   Image,
   useWindowDimensions,
 } from "react-native";
-import React from "react";
+import React, {useContext} from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Profile from "../../../assets/images/profileIcon.jpeg";
 import { useTailwind } from "tailwind-rn";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { AppContext } from "../../AppContext";
 
 const ProfileSection = ({navigation}) => {
+  const { updateUserDetails, users} = useContext(AppContext)
   const backPressed = () => {
     navigation.navigate("HomeScreen")
   };
@@ -48,7 +50,7 @@ const ProfileSection = ({navigation}) => {
         ></Image>
 
         <Text style={{ fontSize: 24, fontWeight: "bold", marginTop: 20 }}>
-          Prakriti Rai
+          {users.userName}
         </Text>
       </View>
 
@@ -58,7 +60,7 @@ const ProfileSection = ({navigation}) => {
         </View>
         <View>
           <Text style={{ fontSize: 18, fontWeight: "600", margin: 10 }}>
-            +977-9825432
+            {users.phoneNumber}
           </Text>
         </View>
       </View>
@@ -75,7 +77,7 @@ const ProfileSection = ({navigation}) => {
               marginLeft: 10,
             }}
           >
-            Prakriti@gmail.com
+           {users.email}
           </Text>
         </View>
       </View>

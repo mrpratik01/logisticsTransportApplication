@@ -21,15 +21,23 @@ import ShipmentHistory from "./src/screen/ShipmentHistory/ShipmentHistory";
 import WalletBalance from "./src/screen/WalletBalance/WalletBalance";
 import ProfileSection from "./src/screen/ProfileSection/ProfileSection";
 import CalculateRate from "./src/screen/CalculateRate";
+import TopUpScreen from "./src/screen/TopUpScreeen/TopUpScreen";
+import Esewa from "./src/screen/EsewaScreen/Esewa";
+import Khalti from "./src/screen/KhaltiScreen/Khalti";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { AppProvider } from "./src/AppContext";
+import { UserContext } from "./src/userContext";
 
 export default function App() {
   const stack = createNativeStackNavigator();
   return (
     <TailwindProvider utilities={utilities}>
       <AppProvider>
+
+
+
+    
         <NavigationContainer>
           <stack.Navigator  screenOptions={{
                 headerShown: false,
@@ -93,9 +101,23 @@ export default function App() {
               name="makePayment"
               component={MakePayment}
             ></stack.Screen>
+            <stack.Screen
+              name="topUpsScreen"
+              component={TopUpScreen}
+            ></stack.Screen>
+            <stack.Screen
+              name="esewa"
+              component={Esewa}
+            ></stack.Screen>
+            <stack.Screen
+              name="khalti"
+              component={Khalti}
+            ></stack.Screen>
           </stack.Navigator>
         </NavigationContainer>
+
       </AppProvider>
+
 
 
     </TailwindProvider>

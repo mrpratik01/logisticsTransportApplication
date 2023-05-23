@@ -19,7 +19,7 @@ import axios from "axios";
 const DeliveryItemsDetails = ({ navigation }) => {
   const route = useRoute();
 
-  const { pickupAddress, dropAddress } = useContext(AppContext);
+  const { pickupAddress, dropAddress, users } = useContext(AppContext);
 
   const backPressed = () => {
     navigation.navigate("DropOffLocation");
@@ -32,7 +32,9 @@ const DeliveryItemsDetails = ({ navigation }) => {
     dropoff_address: dropAddress,
     package_category: "",
     kilometer: "",
+    user_id: users.userID,
     weight: "",
+
   });
 
 
