@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, {useContext} from "react";
 import { Ionicons } from "@expo/vector-icons";
-import Profile from "../../../assets/images/profileIcon.jpeg";
+import Profile from "../../../assets/images/manIcon.png";
 import { useTailwind } from "tailwind-rn";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';

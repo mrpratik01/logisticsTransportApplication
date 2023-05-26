@@ -34,16 +34,11 @@ export default function App() {
   return (
     <TailwindProvider utilities={utilities}>
       <AppProvider>
-
-
-
-    
         <NavigationContainer>
           <stack.Navigator  screenOptions={{
                 headerShown: false,
               }} initialRouteName="WelcomeScreen">
-            <stack.Screen
-            
+            <stack.Screen  
               name="welcomeScreen"
               component={WelcomeScreen}
             ></stack.Screen>
